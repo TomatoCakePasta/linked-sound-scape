@@ -21,4 +21,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-./frontend_test/sounds
+frontend_test/sounds/
