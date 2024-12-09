@@ -23,3 +23,5 @@ pnpm-debug.log*
 
 /frontend_test/sounds/*
 !/frontend_test/sounds/
+
+*.env
