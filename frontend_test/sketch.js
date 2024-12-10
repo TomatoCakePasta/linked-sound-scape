@@ -11,6 +11,7 @@ let testSound;
 let actions;
 let textTimer;
 let displayText;
+const isDebug = true;
 let actionClasses = [
                         Action_0,
                         Action_1,
@@ -68,7 +69,7 @@ function draw() {
     }
 
     // 一時的なテキストの描画
-    if (textTimer > 0) {
+    if (textTimer > 0 && isDebug) {
         fill(50, 150, 40);
         stroke(0);
         textSize(100);
