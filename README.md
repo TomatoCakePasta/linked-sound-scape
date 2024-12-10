@@ -4,8 +4,12 @@
 # DEMO
 デバイスをタップすると、遠隔のデジタル展示作品に効果音とアニメーションが表示  
 体験者はデバイスを通して、作品への影響を模索する  
-![画面収録-2024-12-10-21 08 39-1](https://github.com/user-attachments/assets/0b32af8f-6c96-4c5d-8baa-7a077ebdff19)
-(開発段階)
+
+https://github.com/user-attachments/assets/e1794ec3-2c45-453f-9a66-2ef956f9b84a
+
+
+(開発段階, デモ映像は無音です)
+
 
 # Features
 「通信」で人と人、作品を繋ぐ
