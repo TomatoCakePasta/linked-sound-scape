@@ -1,7 +1,7 @@
 class Action_1 extends Action {
     constructor() {
         // サウンドファイル名, アニメの再生フレーム数
-        super("bass.wav", 30);
+        super("sound_1.wav", 30);
     }
 
     update() {

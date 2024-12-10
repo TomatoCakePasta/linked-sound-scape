@@ -11,11 +11,19 @@ let testSound;
 let actions;
 let actionClasses = [
                         Action_0,
-                        Action_1
+                        Action_1,
+                        Action_2,
+                        Action_3,
+                        Action_4,
+                        Action_5,
+                        Action_6,
+                        Action_7,
+                        Action_8,
+                        Action_9,
                     ];
 
 function preload() {
-    testSound = loadSound("./sounds/bass.wav");
+    testSound = loadSound("./sounds/sound_0.mp3");
 }
 
 function setup() {

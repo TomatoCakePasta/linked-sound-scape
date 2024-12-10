@@ -1,7 +1,7 @@
-class Action_0 extends Action {
+class Action_3 extends Action {
     constructor() {
         // サウンドファイル名, アニメの再生フレーム数
-        super("sound_0.mp3", 30);
+        super("sound_3.mp3", 30);
     }
 
     update() {
@@ -14,17 +14,17 @@ class Action_0 extends Action {
             for (let i = 0; i < 7; i++) {
                 beginShape();
                 
-                let x = width / 2;
-                let y = 0;
+                let x = 0;
+                let y = height / 2;
                 
                 // 雷のランダムな動きをシミュレート
                 for (let i = 0; i < 40; i++) {
-                    x += random(-20, 20);
-                    y += random(40, 80);
+                    y += random(-20, 20);
+                    x += random(40, 80);
                     vertex(x, y);
                 }
                 
-                vertex(x, height);
+                vertex(width, y);
                 endShape();
             }          
         }
