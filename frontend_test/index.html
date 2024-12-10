@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Artist</title>
     <style>
         html, body {
@@ -21,16 +22,16 @@
     <!-- socketイベントを送信 -->
     <!-- 10パターンのサウンドが鳴らせる -->
     <div id="container">
-        <button id="playButton0"></button>
-        <button id="playButton1"></button>
-        <button id="playButton2"></button>
-        <button id="playButton3"></button>
-        <button id="playButton4"></button>
-        <button id="playButton5"></button>
-        <button id="playButton6"></button>
-        <button id="playButton7"></button>
-        <button id="playButton8"></button>
-        <button id="playButton9"></button>
+        <button id="playButton0" ontouchstart=""></button>
+        <button id="playButton1" ontouchstart=""></button>
+        <button id="playButton2" ontouchstart=""></button>
+        <button id="playButton3" ontouchstart=""></button>
+        <button id="playButton4" ontouchstart=""></button>
+        <button id="playButton5" ontouchstart=""></button>
+        <button id="playButton6" ontouchstart=""></button>
+        <button id="playButton7" ontouchstart=""></button>
+        <button id="playButton8" ontouchstart=""></button>
+        <button id="playButton9" ontouchstart=""></button>
     </div>
     
     <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
@@ -102,6 +103,9 @@
         height: 100vh; 
 
         z-index: 1;
+
+        /* アドレスバーを除いたサイズで表示 */
+        height: 100dvh;
     }
     #container > button {
         /* グリッドの幅に合わせる */
@@ -119,7 +123,7 @@
         z-index: auto;
     }
     button:active {
-        background-color: rgba(49, 48, 48, 0.452);
+        background-color: rgba(166, 255, 150, 0.571);
     }
 </style>
 </html>
