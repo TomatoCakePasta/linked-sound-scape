@@ -23,10 +23,10 @@
     <script src="sketch.js"></script>
 
     <script>
-        const PORT = 3001;
-        const url = `http://localhost:${PORT}`;
+        const PORT = 3000;
+        const url = `localhost`;
 
-        const socket = io(url);
+        const socket = io(`${url}:${PORT}`);
 
         socket.on("playEvent", (event) => {
             // alert(event);

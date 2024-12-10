@@ -2,9 +2,13 @@ import express from "express";
 import { Server } from "socket.io";
 import cors from "cors";
 import { createServer } from "http";
+import dotenv from "dotenv";
 
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
+dotenv.config({ path: envFile });
+
+const PORT = process.env.PORT || 3001;
 const app = express();
-const PORT = 3001;
 
 // 接続中のユーザー
 let countUser = 0;
@@ -71,5 +75,6 @@ io.on("connection", (socket) => {
 })
 
 server.listen(PORT, () => {
+    console.log(process.env.NODE_ENV);
     console.log(`Server is running on ${ PORT }`);
 });
