@@ -6,7 +6,7 @@ class Action {
         this.endFrame = _endFrame;
         
         // 現在のフレーム数
-        this.frame = 0;
+        this.frame = _endFrame;
 
         console.log(`Generate ${soundName}`);
     }

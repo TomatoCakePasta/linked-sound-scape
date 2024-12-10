@@ -9,6 +9,8 @@
 
 let testSound;
 let actions;
+let textTimer;
+let displayText;
 let actionClasses = [
                         Action_0,
                         Action_1,
@@ -64,10 +66,23 @@ function draw() {
     for (let i = 0; i < actions; i++) {
         actionClasses[i].update();
     }
+
+    // 一時的なテキストの描画
+    if (textTimer > 0) {
+        fill(50, 150, 40);
+        stroke(0);
+        textSize(100);
+        textAlign(CENTER);
+        text(displayText, width / 2, height / 2);
+        textTimer--; // タイマーをデクリメント
+    }
 }
 
 // webSocketで呼び出したい
 function onClickPlay(id) {
+    displayText = `${id}`;
+    textTimer = 30;
+
     // アクション発動
     actionClasses[id].play();
     actionClasses[id].reset();

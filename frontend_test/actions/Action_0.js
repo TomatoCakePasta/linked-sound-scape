@@ -26,7 +26,7 @@ class Action_0 extends Action {
                 
                 vertex(x, height);
                 endShape();
-            }          
+            }             
         }
     }
 

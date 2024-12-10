@@ -7,26 +7,7 @@ class Action_3 extends Action {
     update() {
         // 最終フレームまで描画
         if (super.isPlay()) {
-            stroke(255);
-            strokeWeight(4);
-            noFill();
-    
-            for (let i = 0; i < 7; i++) {
-                beginShape();
-                
-                let x = 0;
-                let y = height / 2;
-                
-                // 雷のランダムな動きをシミュレート
-                for (let i = 0; i < 40; i++) {
-                    y += random(-20, 20);
-                    x += random(40, 80);
-                    vertex(x, y);
-                }
-                
-                vertex(width, y);
-                endShape();
-            }          
+            // ここにアニメーションを記述
         }
     }
 
