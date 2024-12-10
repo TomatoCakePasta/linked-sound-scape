@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkSoundscape</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.js"></script> 
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src="actions/Action.js"></script>
+    <script src="actions/Action_0.js"></script>
+    <script src="actions/Action_1.js"></script>
+    <script src="actions/Action_2.js"></script>
+    <script src="actions/Action_3.js"></script>
+    <script src="actions/Action_4.js"></script>
+    <script src="actions/Action_5.js"></script>
+    <script src="actions/Action_6.js"></script>
+    <script src="actions/Action_7.js"></script>
+    <script src="actions/Action_8.js"></script>
+    <script src="actions/Action_9.js"></script>
+</head>
+    <!-- p5.jsを読み込み --> 
+    <script src="sketch.js"></script>
+
+    <script>
+        const PORT = 3000;
+        const url = `localhost`;
+
+        const socket = io(`${url}:${PORT}`);
+
+        socket.on("playEvent", (event) => {
+            // alert(event);
+
+            // sketch.jsの関数
+            // TODO: 引数に指定したidの音とアニメを出力したい
+            onClickPlay(event);
+        });
+    </script>
+<body>
+</body>
+</html>

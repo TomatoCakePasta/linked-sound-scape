@@ -3,47 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkSoundscape</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.js"></script> 
-    <!-- <script src="/socket.io/socket.io.js"></script> -->
-    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <title>Artist</title>
     <style>
         html, body {
             margin: 0;
             padding: 0;
             overflow: hidden;
+            background-color: rgb(0, 0, 0);
         }
     </style>
-    <script src="actions/Action.js"></script>
-    <script src="actions/Action_0.js"></script>
-    <script src="actions/Action_1.js"></script>
-    <script src="actions/Action_2.js"></script>
-    <script src="actions/Action_3.js"></script>
-    <script src="actions/Action_4.js"></script>
-    <script src="actions/Action_5.js"></script>
-    <script src="actions/Action_6.js"></script>
-    <script src="actions/Action_7.js"></script>
-    <script src="actions/Action_8.js"></script>
-    <script src="actions/Action_9.js"></script>
 </head>
-    <!-- p5.jsを読み込み --> 
-    <script src="sketch.js"></script>
-
+<body>
+    <h1>
+        Tap to Explore
+    </h1>
+    <!-- BootstrapかtailWindCSS -->
+    <!-- socketイベントを送信 -->
+    <!-- 10パターンのサウンドが鳴らせる -->
+    <div id="container">
+        <button id="playButton0"></button>
+        <button id="playButton1"></button>
+        <button id="playButton2"></button>
+        <button id="playButton3"></button>
+        <button id="playButton4"></button>
+        <button id="playButton5"></button>
+        <button id="playButton6"></button>
+        <button id="playButton7"></button>
+        <button id="playButton8"></button>
+        <button id="playButton9"></button>
+    </div>
+    
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
     <script>
         const PORT = 3000;
-        const url = `localhost`;
+        const url = `localhost:${PORT}`;
 
-        const socket = io(`${url}:${PORT}`);
+        const socket = io(url);
+
+        const actionNum = 10;
+
+        for (let i = 0; i < actionNum; i++) {
+            const button = document.getElementById(`playButton${i}`);
+
+            if (button) {
+                button.addEventListener("click", () => {
+                    console.log(`Play button ${i} clicked`);
+                    socket.emit("playEvent", i);
+                });
+            }
+        }
 
         socket.on("playEvent", (event) => {
             // alert(event);
-
-            // sketch.jsの関数
-            // TODO: 引数に指定したidの音とアニメを出力したい
-            onClickPlay(event);
         });
     </script>
-<body>
 </body>
+<style>
+    h1 {
+        color: rgba(143, 143, 143, 0.556);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        /* 中心に移動 */
+        transform: translate(-50%, -50%);
+
+        /* テキストの中央揃え */
+        text-align: center; 
+
+        font-family: sans-serif;
+        font-weight: 1;
+
+        /* 各ブラウザでテキスト選択無効化 */
+        -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+
+        /* ボタンよりも背面に配置 */
+        z-index: 0;
+
+        /* 
+            クリックイベントを無効化 
+            テキストとボタンが重なってもボタンが押せるようになる
+        */
+        pointer-events: none;
+    }
+    #container {
+        display: grid;
+        /* 2列 */
+        grid-template-columns: repeat(2, 1fr); 
+
+        /* 5行 */
+        grid-template-rows: repeat(5, 1fr);  
+
+        /* 画面全体の高さ */
+        height: 100vh; 
+
+        z-index: 1;
+    }
+    #container > button {
+        /* グリッドの幅に合わせる */
+        width: 100%;  
+
+        /* グリッドの高さに合わせる */
+        height: 100%;
+
+        /* ボーダーを含めてサイズ調整 */
+        box-sizing: border-box;
+    }
+    button {
+        background-color: rgba(240, 248, 255, 0);
+        border-width: 0px;
+        z-index: auto;
+    }
+    button:active {
+        background-color: rgba(49, 48, 48, 0.452);
+    }
+</style>
 </html>
