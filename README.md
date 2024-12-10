@@ -26,20 +26,32 @@ npm install
 ```
 
 # Usage
-初回: プロジェクトをローカル(自分のPC)に入れる
+初回:  
+* プロジェクトをローカル(自分のPC)に入れる
 ```bash
 git clone https://github.com/TomatoCakePasta/linked-sound-scape.git
 ```
+<br>
 
-アプリの実行
-バックエンド側
+* soundsフォルダの作成  
+ soundsに任意のサウンドファイルを格納
+```bash
+cd frontend_test
+mkdir sounds
+```
+<br>
+
+アプリの実行:  
+* バックエンド側
 ```bash
 cd backend
 node server.js
 ```
-フロントエンド側(VSCodeの場合)  
-拡張機能から「Live Server」をインストール  
-htmlファイルを左クリック(Mac: Ctrl + クリック)でOpen With Live Serverを選択  
+<br>
+
+* フロントエンド側(VSCodeの場合)  
+ 拡張機能から「Live Server」をインストール  
+ htmlファイルを左クリック(Mac: Ctrl + クリック)でOpen With Live Serverを選択  
 
 # Note
 * Node.jsが未インストールの場合は[こちらから](https://nodejs.org/en/)
