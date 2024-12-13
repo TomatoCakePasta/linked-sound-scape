@@ -25,6 +25,10 @@ let actionClasses = [
                         Action_9,
                     ];
 
+let swipeClasses = [
+
+];
+
 function preload() {
     testSound = loadSound("./sounds/sound_0.mp3");
 }

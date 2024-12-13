@@ -11,6 +11,12 @@
             height: 100%;
             overflow: hidden;
             overscroll-behavior: none;
+
+            /* 各ブラウザでテキスト選択無効化 */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
     </style>
 </head>
@@ -62,7 +68,13 @@
         <h1 id="display">スワイプして</h1>
     </div>
 
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
     <script>
+        const PORT = 3000;
+        const url = `localhost:${PORT}`;
+
+        const socket = io(url);
+
         const minDistance = 30;
 
         let startX = 0;
@@ -70,11 +82,20 @@
 
         let endX = 0;
         let endY = 0;
+        let power;
+        let isMouseDown = false;
 
         // スワイプ開始
         window.addEventListener("touchstart", (event) => {
             startX = event.touches[0].pageX;
             startY = event.touches[0].pageY;
+        });
+
+        // マウスデバッグ用
+        window.addEventListener("mousedown", (event) => {
+            isMouseDown = true;
+            startX = event.pageX;
+            startY = event.pageY;
         });
 
         // スワイプ過程取得
@@ -84,10 +105,17 @@
         });
 
         // スワイプ終了
-        window.addEventListener("touchend", (event) => {
-            endX = event.changedTouches[0].pageX;
-            endY = event.changedTouches[0].pageY;
+        window.addEventListener("touched", handleSwipeEnd);
+        window.addEventListener("mouseup", (event) => {
+            if (isMouseDown) {
+                isMouseDown = false;
+                endX = event.pageX;
+                endY = event.pageY;
+                handleSwipeEnd();
+            }
+        })
 
+        function handleSwipeEnd() {
             // 横方向の移動量
             const distanceX = Math.abs(endX - startX);
 
@@ -99,6 +127,12 @@
 
             let xDeg = endX - startX;
             let yDeg = endY - startY;
+
+            power = parseInt(Math.sqrt(distanceX * distanceX + distanceY * distanceY));
+
+            let retX = 1;
+            let retY = 1;
+            let retDirection = -1;
 
             /* 
                 左上, 上, 右上
@@ -117,31 +151,52 @@
             if (distanceX > minDistance) {
                 if (xDeg < 0) {
                     msg += `左`;
+                    retX -= 1;
                 }
                 else {
                     msg += `右`;
+                    retX += 1;
                 }
             }
 
             if (distanceY > minDistance) {
                 if (yDeg < 0) {
                     msg += `上`;
+                    retY -= 1;
                 }
                 else {
                     msg += `下`;
+                    retY += 1;
                 }
             } 
 
-            // if (distanceX > distanceY && distanceX > minDistance) {
-            //     msg = `左右スワイプ`;
-            // }
+            if (power < 150) {
+                msg += ":弱";
+                power = 0;
+            }
+            else if (power < 230) {
+                msg += ":中";
+                power = 1;
+            }
+            else {
+                msg += ":強";
+                power = 2;
+            }
 
-            // if (distanceX < distanceY && distanceY > minDistance) {
-            //     msg = `上下スワイプ`;
-            // }
+            retDirection = retIndex[retY][retX];
+            msg += `<br>${retDirection}`;
 
             textArea.innerHTML = msg;
-        });
+
+            const data = {
+                direction: retDirection,
+                power: power
+            }
+
+            if (retDirection > 0) {
+                socket.emit("swipeEvent", data);
+            }
+        };
     </script>
 </body>
 <style>

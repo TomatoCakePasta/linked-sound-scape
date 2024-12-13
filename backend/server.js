@@ -85,6 +85,13 @@ io.on("connection", (socket) => {
         io.emit("playEvent", index);
     })
 
+    // スワイプイベント
+    socket.on("swipeEvent", (data) => {
+        const { direction, power } = data;
+        console.log(`dierection: ${direction}, power: ${power}`);
+        io.emit("swipeEvent", data);
+    })
+
     socket.on("disconnect", () => {
         console.log("Disconnect client");
         countUser--;
