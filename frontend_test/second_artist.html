@@ -3,10 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Magic Artist</title>
+    <style>
+        body {
+            background-color: black;
+            color:aliceblue;
+            height: 100%;
+            overflow: hidden;
+            overscroll-behavior: none;
+        }
+    </style>
 </head>
 <body>
     <!-- ボールを引っ張って投げるやつ -->
-     <!-- Action10内に球のクラスを用意、球を管理するArrayListで -->
+    <!-- Action10内に球のクラスを用意、球を管理するArrayListで -->
+    
+    <!-- Shakeするとその方向に合わせてアニメーションが流れる -->
+    <!-- Many to One -->
+    <!-- HTTPSプロトコルが必須!! -->
+
+    <!-- ひとまず妥協でスワイプ版で作成しよう -->
+    <!-- <h1 id="beta_gamma">Shake !!</h1>
+    <p id="acceleration">Shake your smartphone device</p>
+    <div id="demo_info"></div>
+
+    <script>
+        window.addEventListener("deviceorientation", handleOrientation);
+
+        function handleOrientation(event) {
+            let x = event.beta;
+            let y = event.gamma;
+            let xA = event.acceleration.x;
+            let yA = event.acceleration.y;
+            let zA = event.acceleration.z;
+
+            let textArea = document.getElementById("beta_gamma");
+            textArea.innerHTML = `x.beta: ${x}, y.gamma: ${y}`;
+
+            let acceleArea = document.getElementById("acceleration");
+            acceleArea.innerHTML = `acceleration x: ${xA}, y: ${yA}, z: ${zA}`;
+        }
+
+        window.onload = () => {
+            if( window.DeviceOrientationEvent ){
+                if(DeviceOrientationEvent.requestPermission && typeof DeviceOrientationEvent.requestPermission === 'function' ){
+                    var banner = '<div  onclick="ClickRequestDeviceSensor();" class="btn" id="sensorrequest">加速度センサーの有効化</div>';
+                    $('#demo_info').append( banner );
+                } 
+                else {
+                    window.addEventListener("devicemotion", handleOrientation);
+                }
+            }
+        };
+
+    </script> -->
+
+    <div class="flex center h-100">
+        <h1 id="display">スワイプして</h1>
+    </div>
+
+    <script>
+        const minDistance = 30;
+
+        let startX = 0;
+        let startY = 0;
+
+        let endX = 0;
+        let endY = 0;
+
+        // スワイプ開始
+        window.addEventListener("touchstart", (event) => {
+            startX = event.touches[0].pageX;
+            startY = event.touches[0].pageY;
+        });
+
+        // スワイプ過程取得
+        window.addEventListener("touchmove", (event) => {
+            endX = event.changedTouches[0].pageX;
+            endY = event.changedTouches[0].pageY;
+        });
+
+        // スワイプ終了
+        window.addEventListener("touchend", (event) => {
+            endX = event.changedTouches[0].pageX;
+            endY = event.changedTouches[0].pageY;
+
+            // 横方向の移動量
+            const distanceX = Math.abs(endX - startX);
+
+            // 縦方向の移動量
+            const distanceY = Math.abs(endY - startY);
+
+            let textArea = document.getElementById("display");
+            let msg = ``;
+
+            let xDeg = endX - startX;
+            let yDeg = endY - startY;
+
+            /* 
+                左上, 上, 右上
+                左, , 右
+                左下, 下, 右下
+            */
+           // 係数 + この値をsocketで送る
+            const retIndex = [
+                [0, 1, 2],
+                [3, -1, 4],
+                [5, 6, 7]
+            ]
+
+            let direction = [0, 0];
+
+            if (distanceX > minDistance) {
+                if (xDeg < 0) {
+                    msg += `左`;
+                }
+                else {
+                    msg += `右`;
+                }
+            }
+
+            if (distanceY > minDistance) {
+                if (yDeg < 0) {
+                    msg += `上`;
+                }
+                else {
+                    msg += `下`;
+                }
+            } 
+
+            // if (distanceX > distanceY && distanceX > minDistance) {
+            //     msg = `左右スワイプ`;
+            // }
+
+            // if (distanceX < distanceY && distanceY > minDistance) {
+            //     msg = `上下スワイプ`;
+            // }
+
+            textArea.innerHTML = msg;
+        });
+    </script>
 </body>
+<style>
+    .flex {
+        display: flex;
+    }
+    .center {
+        justify-content: center;
+        align-items: center;
+    }
+    .h-100 {
+        height: 100vh;
+    }
+</style>
 </html>

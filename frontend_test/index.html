@@ -25,6 +25,10 @@
     <!-- BootstrapかtailWindCSS -->
     <!-- socketイベントを送信 -->
     <!-- 10パターンのサウンドが鳴らせる -->
+    <!-- ブラウザリロード時にランダムで1種類のサウンドパターンが出ると面白い -->
+    <!-- グリーンは大自然と未来 -->
+    <!-- ネオピンクはサンプリングとボイス -->
+    <!-- スマホをシェイクして振るか、リロード、または再度QRを読むとパッド -->
     <div id="container">
         <button id="playButton0" ontouchstart=""></button>
         <button id="playButton1" ontouchstart=""></button>
@@ -47,6 +51,12 @@
         const socket = io(url);
 
         const actionNum = 10;
+
+        // socket.emitに i + 10 * soundPetternでsoundPettern種類のパッドを用意する
+        // 0 to 9, 0 + 10 to 9 + 10 -> 10 to 19, 0 + 20 to 9 + 20 -> 20 to 29
+        const soundPettern = random(0, 3);
+
+        // soundPetternによってbutton:activeの色を変更してここで生成
 
         for (let i = 0; i < actionNum; i++) {
             const button = document.getElementById(`playButton${i}`);
