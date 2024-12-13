@@ -46,7 +46,7 @@
     <!-- <script src="/socket.io/socket.io.js"></script> -->
     <script>
         const PORT = 3000;
-        const url = `localhost:${PORT}`;
+        const url = `localhost${PORT}`;
 
         const socket = io(url);
 
@@ -54,7 +54,7 @@
 
         // socket.emitに i + 10 * soundPetternでsoundPettern種類のパッドを用意する
         // 0 to 9, 0 + 10 to 9 + 10 -> 10 to 19, 0 + 20 to 9 + 20 -> 20 to 29
-        const soundPettern = random(0, 3);
+        // const soundPettern = random(0, 3);
 
         // soundPetternによってbutton:activeの色を変更してここで生成
 

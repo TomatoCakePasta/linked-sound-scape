@@ -3,6 +3,8 @@ import { Server } from "socket.io";
 import cors from "cors";
 import { createServer } from "http";
 import dotenv from "dotenv";
+import https from "https";
+import fs from "fs";
 
 const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
 dotenv.config({ path: envFile });
@@ -27,8 +29,29 @@ app.use(cors({
 app.use(express.json());
 
 let server;
+let protocol = "";
 
-server = createServer(app);
+console.log(`Environment: ${process.env.NODE_ENV}`);
+
+// 本番環境
+if (process.env.NODE_ENV === "production") {
+    const url = process.env.VITE_APP_URL;
+    console.log(url);
+
+    const options = {
+        key: fs.readFileSync(`../../../etc/letsencrypt/live/${url}/privkey.pem`),
+        cert: fs.readFileSync(`../../../etc/letsencrypt/live/${url}/cert.pem`),
+    }
+
+    server = https.createServer(options, app);
+
+    protocol = "HTTPS";
+}
+// ローカル環境
+else {
+    server = createServer(app);
+    protocol = "HTTP";
+}
 
 const io = new Server(server, {
     cors: {
@@ -75,6 +98,6 @@ io.on("connection", (socket) => {
 })
 
 server.listen(PORT, () => {
-    console.log(process.env.NODE_ENV);
-    console.log(`Server is running on ${ PORT }`);
+    // console.log(process.env.NODE_ENV);
+    console.log(`${protocol} Server is running on ${ PORT }`);
 });
