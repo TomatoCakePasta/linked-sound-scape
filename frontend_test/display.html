@@ -32,6 +32,7 @@
     <script src="actions/Action_8.js"></script>
     <script src="actions/Action_9.js"></script>
     <script src="actions/Action_destroy.js"></script>
+    <script src="actions/Action_swipe.js"></script>
 </head>
     <!-- p5.jsを読み込み --> 
     <script src="sketch.js"></script>
@@ -52,6 +53,7 @@
 
         socket.on("swipeEvent", (event) => {
             console.log("swipeEvent");
+            onClickSwipe();
         });
 
         // 破壊イベント

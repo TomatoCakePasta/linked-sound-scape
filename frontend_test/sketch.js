@@ -26,6 +26,7 @@ let actionClasses = [
                     ];
 
 let actionDestroy;
+let actionSwipe;
 
 let swipeClasses = [
 
@@ -53,6 +54,7 @@ function setup() {
     actionClasses = actionClasses.map(ActionClass => new ActionClass());
 
     actionDestroy = new Action_destroy();
+    actionSwipe= new Action_swipe();
 
     console.log(actionClasses);
     background(0);
@@ -67,6 +69,7 @@ function draw() {
     }
 
     actionDestroy.update();
+    actionSwipe.update();
 
     // 一時的なテキストの描画
     if (textTimer > 0 && isDebug) {
@@ -79,7 +82,9 @@ function draw() {
     }
 }
 
-// webSocketで呼び出したい
+/**
+ * タッチイベント
+ */
 function onClickPlay(id) {
     displayText = `${id}`;
     textTimer = 30;
@@ -89,7 +94,17 @@ function onClickPlay(id) {
     actionClasses[id].reset();
  }
 
- // 破壊イベント
+ /**
+  *  スワイプイベント 
+  */
+ function onClickSwipe() {
+    actionSwipe.play();
+    actionSwipe.reset();
+ }
+
+ /** 
+  * 破壊イベント
+  */
  function onClickDestroy() {
     // 全てのアニメーションと音を止める
     for (let i = 0; i < actions; i++) {

@@ -31,8 +31,10 @@ class Action {
 
     /**
      * 効果音を鳴らす
+     * 特殊アクションのみ複数のサウンドを持つため
      */
-    play() {
+    play(id = 0) {
+        // this.sound[id].play();
         this.sound.play();
     }
 
