@@ -83,13 +83,19 @@ io.on("connection", (socket) => {
          console.log("playEvent");
         // console.log("GET changeColor : ", newColor);
         io.emit("playEvent", index);
-    })
+    });
 
     // スワイプイベント
     socket.on("swipeEvent", (data) => {
         const { direction, power } = data;
         console.log(`dierection: ${direction}, power: ${power}`);
         io.emit("swipeEvent", data);
+    });
+
+    // 破壊イベント
+    socket.on("destroyEvent", () => {
+        console.log("Destroy Event");
+        io.emit("destroyEvent");
     })
 
     socket.on("disconnect", () => {

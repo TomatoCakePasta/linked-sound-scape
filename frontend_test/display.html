@@ -50,7 +50,12 @@
         });
 
         socket.on("swipeEvent", (event) => {
-            
+            console.log("swipeEvent");
+        });
+
+        // 破壊イベント
+        socket.on("destroyEvent", () => {
+            console.log("destroyEvent");
         });
     </script>
     <script>
