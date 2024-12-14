@@ -25,6 +25,8 @@ let actionClasses = [
                         Action_9,
                     ];
 
+let actionDestroy;
+
 let swipeClasses = [
 
 ];
@@ -46,19 +48,11 @@ function setup() {
     // test 画面クリックでサウンド出力
     canvas.mousePressed(onTestPlay)
 
-    // 配列の分だけクラス生成
-    // for (let i = 0; i < actions; i++) {       
-    //     const module = import(`./actions/Action_${i}`);
-    //     const actionClass = module[`Action_${i}`];
-    //     if (actionClass) {
-    //         actionClasses.push(new actionClass());
-    //     }
-    //     else {
-    //         console.error(`Not Found Action_${i}`);
-    //     }
-    // }
-
+    // インスタンス生成はsetup内で行う
+    // setup外だとできないかも
     actionClasses = actionClasses.map(ActionClass => new ActionClass());
+
+    actionDestroy = new Action_destroy();
 
     console.log(actionClasses);
     background(0);
@@ -71,6 +65,8 @@ function draw() {
     for (let i = 0; i < actions; i++) {
         actionClasses[i].update();
     }
+
+    actionDestroy.update();
 
     // 一時的なテキストの描画
     if (textTimer > 0 && isDebug) {
@@ -91,6 +87,18 @@ function onClickPlay(id) {
     // アクション発動
     actionClasses[id].play();
     actionClasses[id].reset();
+ }
+
+ // 破壊イベント
+ function onClickDestroy() {
+    // 全てのアニメーションと音を止める
+    for (let i = 0; i < actions; i++) {
+        actionClasses[i].stop();
+    }
+
+    // 爆発音とフラッシュアニメーション
+    actionDestroy.play();
+    actionDestroy.reset();
  }
 
  function onTestPlay() {

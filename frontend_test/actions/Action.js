@@ -11,7 +11,9 @@ class Action {
         console.log(`Generate ${soundName}`);
     }
 
-    // アニメ再生判断
+    /**
+     * アニメ再生判断
+     */
     isPlay() {
         if (this.frame < this.endFrame) {
             ++this.frame;
@@ -21,16 +23,30 @@ class Action {
         return false;
     }
 
-    // アニメーションを描画
+    /*
+     * アニメーションを描画
+     */
     update() {
     }
 
-    // 効果音を鳴らす
+    /**
+     * 効果音を鳴らす
+     */
     play() {
         this.sound.play();
     }
 
-    // アニメーションをリセットする
+    /**
+     * 効果音を止める
+     */
+    stop() {
+        this.sound.stop();
+        this.frame = this.endFrame;
+    }
+
+    /**
+     * アニメーションをリセットする
+     */
     reset() {
         
     }

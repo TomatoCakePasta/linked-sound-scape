@@ -31,6 +31,7 @@
     <script src="actions/Action_7.js"></script>
     <script src="actions/Action_8.js"></script>
     <script src="actions/Action_9.js"></script>
+    <script src="actions/Action_destroy.js"></script>
 </head>
     <!-- p5.jsを読み込み --> 
     <script src="sketch.js"></script>
@@ -56,6 +57,7 @@
         // 破壊イベント
         socket.on("destroyEvent", () => {
             console.log("destroyEvent");
+            onClickDestroy();
         });
     </script>
     <script>

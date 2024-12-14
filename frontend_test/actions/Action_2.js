@@ -15,6 +15,10 @@ class Action_2 extends Action {
         super.play();
     }
 
+    stop() {
+        super.stop();
+    }
+
     reset() {
         this.frame = 0;
 
