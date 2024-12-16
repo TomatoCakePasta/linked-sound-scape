@@ -59,6 +59,7 @@ node server.js
 
 # Note
 * Node.jsが未インストールの場合は[こちらから](https://nodejs.org/en/)
+* .env, .env.productionファイルを作成してください
 
 # Vision
 * Max MSPやTouch Designerへのデータ転送
