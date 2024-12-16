@@ -9,7 +9,7 @@ https://github.com/user-attachments/assets/e1794ec3-2c45-453f-9a66-2ef956f9b84a
 
 
 (開発段階, デモ映像は無音です)
-
+2024年12月製作開始, 2025年3月展示予定  
 
 # Features
 「通信」で人と人、作品を繋ぐ
