@@ -108,7 +108,7 @@
         });
 
         // スワイプ終了
-        window.addEventListener("touched", handleSwipeEnd);
+        window.addEventListener("touchend", handleSwipeEnd);
         window.addEventListener("mouseup", (event) => {
             if (isMouseDown) {
                 isMouseDown = false;
@@ -196,7 +196,7 @@
                 power: power
             }
 
-            if (retDirection > 0) {
+            if (retDirection >= 0) {
                 socket.emit("swipeEvent", data);
             }
         };

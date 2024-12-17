@@ -88,7 +88,7 @@ io.on("connection", (socket) => {
     // スワイプイベント
     socket.on("swipeEvent", (data) => {
         const { direction, power } = data;
-        console.log(`dierection: ${direction}, power: ${power}`);
+        // console.log(`dierection: ${direction}, power: ${power}`);
         io.emit("swipeEvent", data);
     });
 

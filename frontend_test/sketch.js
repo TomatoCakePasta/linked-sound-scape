@@ -97,9 +97,9 @@ function onClickPlay(id) {
  /**
   *  スワイプイベント 
   */
- function onClickSwipe() {
+ function onClickSwipe(data) {
     actionSwipe.play();
-    actionSwipe.reset();
+    actionSwipe.reset(data);
  }
 
  /** 
