@@ -111,6 +111,8 @@ function onClickPlay(id) {
         actionClasses[i].stop();
     }
 
+    actionSwipe.stop();
+
     // 爆発音とフラッシュアニメーション
     actionDestroy.play();
     actionDestroy.reset();

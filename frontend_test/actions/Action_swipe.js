@@ -18,6 +18,9 @@ class Action_swipe extends Action {
                 }
             }
         }
+        else {
+            this.dragons = [];
+        }
     }
 
     play() {
