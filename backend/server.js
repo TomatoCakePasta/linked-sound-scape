@@ -22,7 +22,7 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"],
 
     // セッションCookieを許可する
-    credentails: true,
+    credentials: true,
 }));
 
 // JSON形式のリクエストボディをパース
@@ -108,6 +108,12 @@ io.on("connection", (socket) => {
         // console.log("event getClients", countUser);
         io.emit("getClients", countUser);
     });
+
+    // max用のテスト
+    socket.on("bang", () => {
+        console.log("GET bang");
+        socket.emit("bang", 1);
+    })
 })
 
 server.listen(PORT, () => {
